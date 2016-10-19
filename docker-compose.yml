@@ -3,7 +3,6 @@ version: '2'
 services:
   plex:
     image: linuxserver/plex
-    network_mode: host
     environment:
       - VERSION=latest
       - TZ=Australia/Melbourne
@@ -12,6 +11,8 @@ services:
       - ./media/tv:/data/tvshows
       - ./media/movies:/data/movies
       - ./transcoding:/transcode
+    ports:
+      - 32400:32400
 
   transmission:
     image: linuxserver/transmission
