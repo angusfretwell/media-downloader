@@ -1,0 +1,68 @@
+version: '2'
+
+services:
+  plex:
+    image: linuxserver/plex
+    network_mode: host
+    environment:
+      - VERSION=latest
+      - TZ=Australia/Melbourne
+    volumes:
+      - ./config/plex:/config
+      - ./media/tv:/data/tvshows
+      - ./media/movies:/data/movies
+      - ./transcoding:/transcode
+
+  transmission:
+    image: linuxserver/transmission
+    environment:
+      - TZ=Australia/Melbourne
+    volumes:
+      - ./config/transmission:/config
+      - ./downloads:/downloads
+      - ./blackhole:/watch
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+
+  nzbget:
+    image: linuxserver/nzbget
+    environment:
+      - TZ=Australia/Melbourne
+    volumes:
+      - ./config/nzbget:/config
+      - ./downloads:/downloads
+    ports:
+      - 6789:6789
+
+  couchpotato:
+    image: linuxserver/couchpotato
+    environment:
+      - TZ=Australia/Melbourne
+    ports:
+      - 5050:5050
+    volumes:
+      - ./config/couchpotato:/config
+      - ./downloads:/downloads
+      - ./media/movies:/movies
+
+  headphones:
+    image: linuxserver/headphones
+    environment:
+      - TZ=Australia/Melbourne
+    ports:
+      - 8181:8181
+    volumes:
+      - ./config/headphones:/config
+      - ./downloads:/downloads
+      - ./media/music:/music
+
+  sonarr:
+    image: linuxserver/sonarr
+    ports:
+      - 8989:8989
+    volumes:
+      - ./config/sonarr:/config
+      - ./media/tv:/tv
+      - ./downloads:/downloads
