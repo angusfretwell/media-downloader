@@ -41,29 +41,29 @@ services:
     image: linuxserver/couchpotato
     environment:
       - TZ=Australia/Melbourne
-    ports:
-      - 5050:5050
     volumes:
       - ./config/couchpotato:/config
       - ./downloads:/downloads
       - ./media/movies:/movies
+    ports:
+      - 5050:5050
 
   headphones:
     image: linuxserver/headphones
     environment:
       - TZ=Australia/Melbourne
-    ports:
-      - 8181:8181
     volumes:
       - ./config/headphones:/config
       - ./downloads:/downloads
       - ./media/music:/music
+    ports:
+      - 8181:8181
 
   sonarr:
     image: linuxserver/sonarr
-    ports:
-      - 8989:8989
     volumes:
       - ./config/sonarr:/config
       - ./media/tv:/tv
       - ./downloads:/downloads
+    ports:
+      - 8989:8989
