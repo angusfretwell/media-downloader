@@ -10,6 +10,7 @@ services:
       - ./config/plex:/config
       - ./media/tv:/data/tvshows
       - ./media/movies:/data/movies
+      - ./media/music:/data/music
       - ./transcoding:/transcode
     ports:
       - 32400:32400
