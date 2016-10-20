@@ -12,6 +12,8 @@ A media downloader and server Docker Compose application with Plex, Transmission
 
 2. Configure the services to your liking.
 
+**Hint:** You can configure services to talk to each other by using the name of the container as a hostname. For example, Nzbget will be accessible on `nzbget:6789` to all other containers in the application.
+
 ## Services
 
 | Service      | Port  |
